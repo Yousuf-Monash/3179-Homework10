@@ -1,32 +1,70 @@
 {
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
-  "width": 800,
-  "height": 450,
-  "title": "Combined Wealth of Billionaires in each country 2023",
-  "projection": {"type": "equirectangular"},
-  "layer": [
+  "data": {
+    "url": "https://raw.githubusercontent.com/Yousuf-Monash/3179-Homework10/main/data/Billionaires%20Statistics%20Dataset.csv"
+  },
+  "vconcat": [
     {
-      "data": {
-        "url": "https://raw.githubusercontent.com/Yousuf-Monash/3179-Homework-Week-9/main/js/ne_110m_admin_0_countries.json",
-        "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
-      },
-      "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+      "width": "container",
+      "height": 450,
+      "title": "Combined Wealth of Billionaires in each country 2023",
+      "projection": {"type": "equirectangular"},
+      "layer": [
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/Yousuf-Monash/3179-Homework-Week-9/main/js/ne_110m_admin_0_countries.json",
+            "format": {"type": "topojson", "feature": "ne_110m_admin_0_countries"}
+          },
+          "mark": {"type": "geoshape", "fill": "lightgray", "stroke": "white"}
+        },
+        {
+          "data": {
+            "url": "https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/7_others/oceans.topojson",
+            "format": {"type": "topojson", "feature": "oceans"}
+          },
+          "mark": {"type": "geoshape", "fill": "skyblue"}
+        },
+        {
+          "data": {
+            "url":"https://raw.githubusercontent.com/FIT3179/Vega-Lite/main/2_symbol_map/js/WorldMapWithGraticules.topojson",
+            "format": {"type": "topojson", "feature": "ne_110m_graticules_30"}
+          },
+          "mark": {"type": "geoshape", "fill": null, "stroke": "lightgray"}
+        },
+        {
+          "mark": {"type": "circle", "tooltip": {"content": "data"}},
+          "transform": [{"filter": {"param": "brush"}}],
+          "encoding": {
+            "longitude": {"field": "longitude_country", "type": "quantitative"},
+            "latitude": {"field": "latitude_country", "type": "quantitative"},
+            "size": {
+              "aggregate": "sum",
+              "field": "finalWorth",
+              "type": "quantitative",
+              "title": "Combined Wealth in Millions"
+            }
+          }
+        }
+      ]
     },
     {
-      "data": {
-        "url": "https://raw.githubusercontent.com/Yousuf-Monash/3179-Homework10/main/data/Billionaires%20Statistics%20Dataset.csv"
-      },
-      "mark": {"type": "circle", "tooltip": {"content": "data"}},
+      "width": "container",
+      "height": 300,
+      "title": "Wealth by Age with Industry",
+      "params": [{
+        "name": "brush",
+        "select": "interval",
+        "value": {"x": [35, 75], "y": [40000, 170000]}
+      }],
+      "mark": "point",
       "encoding": {
-        "longitude": {"field": "longitude_country", "type": "quantitative"},
-        "latitude": {"field": "latitude_country", "type": "quantitative"},
-        "size": {
-          "aggregate": "sum",
-          "field": "finalWorth",
-          "type": "quantitative",
-          "title": "Combined Wealth in Millions"
-        }
+          "x": {"title": "Age", "field": "age", "type": "quantitative"},
+          "y": {"title": "Final Worth","field": "finalWorth", "type": "quantitative"},
+          "color": {
+          "condition": {"param": "brush", "field": "selfMade", "type": "nominal"},
+          "value": "grey"
+          }
       }
     }
-  ]
+  ] 
 }
