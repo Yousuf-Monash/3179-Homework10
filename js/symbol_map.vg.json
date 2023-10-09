@@ -2,8 +2,8 @@
   "$schema": "https://vega.github.io/schema/vega-lite/v5.json",
   "width": 800,
   "height": 450,
-  "title": "Earthquakes of magnitude 4 or large between 4 Oct 2020 and 10 Oct 2020",
-  "projection": {"type": "equalEarth"},
+  "title": "Combined Wealth of Billionaires in each country 2023",
+  "projection": {"type": "equirectangular"},
   "layer": [
     {
       "data": {
@@ -14,16 +14,17 @@
     },
     {
       "data": {
-        "url": "https://github.com/Yousuf-Monash/3179-Homework-Week-9/blob/main/data/global-data-on-sustainable-energy.csv"
+        "url": "https://raw.githubusercontent.com/Yousuf-Monash/3179-Homework10/main/data/Billionaires%20Statistics%20Dataset.csv"
       },
       "mark": {"type": "circle", "tooltip": {"content": "data"}},
       "encoding": {
-        "longitude": {"field": "Longitude", "type": "quantitative"},
-        "latitude": {"field": "Latitude", "type": "quantitative"},
+        "longitude": {"field": "longitude_country", "type": "quantitative"},
+        "latitude": {"field": "latitude_country", "type": "quantitative"},
         "size": {
-          "field": "Renewable-electricity-generating-capacity-per-capita",
+          "aggregate": "sum",
+          "field": "finalWorth",
           "type": "quantitative",
-          "title": "Magnitude (Richter scale)"
+          "title": "Combined Wealth in Millions"
         }
       }
     }
