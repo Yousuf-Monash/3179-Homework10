@@ -1,9 +1,9 @@
 .container {
     display: flex;
-    justify-content: center; /* align horizontally */
-    align-items: center;     /* align vertically */
-    height: 100vh;           /* use 100% of the viewport height */
+    justify-content: left; 
+    align-items: center;     
+    height: 100vh;           
 }
 #symbol_map {
-    width: 1000px;
+    width: 1100px;
 }
