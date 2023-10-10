@@ -69,7 +69,7 @@
     {
       "width": "container",
       "height": 300,
-      "title": "Wealth by Age with Industry",
+      "title": "Wealth by Age",
       "layer": [
         {
           "params" :[
