@@ -83,7 +83,7 @@
           "encoding": {
             "x": {"title": "Age", "field": "age", "type": "quantitative"},
             "y": {
-              "title": "Wealth in Millions",
+              "title": "Net Worth in Millions",
               "field": "finalWorth",
               "type": "quantitative"
             },
@@ -120,7 +120,7 @@
             },
             "x": {"title": "Age", "field": "age", "type": "quantitative"},
             "y": {
-              "title": "Net Worth",
+              "title": "Net Worth in Millions",
               "field": "finalWorth",
               "type": "quantitative"
             }
